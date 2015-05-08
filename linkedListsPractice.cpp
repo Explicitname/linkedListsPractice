@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <new>
+#include <string>
 
 using std::cout;
 using std::endl;
