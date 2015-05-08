@@ -46,6 +46,9 @@ public:
 	LinkedList();
 	//~LinkedList();
 	void addNodeBegin(int value);
+	void addNodeEnd(int value);
+	int removeHeadNode(int value);
+	int removeTailNode(int value);
 private:
 	int _length = 0;
 	Node *_listHead;
@@ -73,6 +76,74 @@ void LinkedList::addNodeBegin(int value){
 	}
 }
 
+void LinkedList::addNodeEnd(int value){
+	if (_listHead == NULL){
+			Node *newNode = new Node(value);
+			_length += 1;
+			_listHead = newNode;
+			_listTail = newNode;
+}
+	else{
+		Node *newNode = new Node(value);
+		_length += 1;
+		Node *current = _listTail;
+		current->_nextNode = newNode;
+		_listTail = newNode;
+	}
+}
+
+int LinkedList::addNodeBegin(int value){
+	if (_listHead == NULL){
+		return 0;
+	}
+	else if(_length == 1){
+		_length -= 1;
+		int PopHead = _listHead->_value;
+		delete _listHead;
+		_listHead = NULL;
+		_listTail = NULL;
+		return PopHead;
+
+
+	}
+	else{
+		_length -= 1;
+		Node *current = _listHead->_nextNode;
+		int PopHead = _listHead->_value;
+		delete _listHead;
+		_listHead = current;
+		return PopHead;
+		}
+
+}
+
+int LinkedList::RemoveTailNode(int value){
+	if (_listHead == NULL){
+		return 0;
+	}
+	else if(_length == 1){
+			_length -= 1;
+			int PopHead = _listHead->_value;
+			delete _listHead;
+			_listHead = NULL;
+			_listTail = NULL;
+			return PopHead;
+	}
+	else{
+		_length -= 1;
+		int PopTail = _listTail->_value;
+		Node *top = _listHead;
+
+		while(_listTail != top->_nextNode){
+			top = top->_nextNode;
+		}
+		delete _listTail;
+		_listTail = top;
+		top->_nextNode = NULL;
+		return PopTail;
+	}
+
+}
 
 int main(int argc, char* argv[])
 {
