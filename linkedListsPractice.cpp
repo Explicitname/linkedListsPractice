@@ -10,10 +10,12 @@ using std::string;
 using std::cin;
 
 struct Node{
+	friend class LinkedList;
 public:
 	Node();
 	Node(int value);
 	int printVal();
+	Node getNextNode();
 
 private:
 	int _value;
@@ -25,8 +27,12 @@ Node::Node(){
 	_value		= NULL;
 }
 
-Node::printVal(){
+int Node::printVal(){
 	return _value;
+}
+
+Node Node::getNextNode(){
+	return *_nextNode;
 }
 
 Node::Node(int value){
